@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Window</title>
+
+		<link rel="stylesheet" href="window.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="window.js"></script>
+	</head>
+	<body>
+		<svg id="svg-canvas">
+			<defs>
+				<linearGradient id="light-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+					<stop id="light-gradient-stop1" offset="0%" />
+					<stop id="light-gradient-stop2" offset="82%" />
+					<!-- <stop id="light-gradient-stop1" stop-color="#FCB350" offset="0%" />
+					<stop id="light-gradient-stop2" stop-color="green" offset="100%" /> -->
+				</linearGradient>
+			</defs>
+			<polygon id="light" fill="url(#light-gradient)" />
+			<rect id="window" />
+		</svg>
+	</body>
+</html>

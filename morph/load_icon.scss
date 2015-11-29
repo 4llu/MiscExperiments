@@ -1,0 +1,92 @@
+// MIXINS
+@mixin filter($url) {
+	-webkit-filter: url($url);
+	        filter: url($url);
+}
+
+@mixin animation ($name, $easing, $duration, $rep) {
+	-webkit-animation: $name $easing $duration $rep;
+	   -moz-animation: $name $easing $duration $rep;
+	     -o-animation: $name $easing $duration $rep;
+	        animation: $name $easing $duration $rep;
+}
+
+// REST
+
+body {
+	background-color: #4CE0B3;
+}
+
+.blobs {
+	@include filter("#goo");
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 500px;
+	height: 500px;
+	padding: 100px;
+}
+
+.blob {
+	position: absolute;
+	background: #221D23;
+	border-radius: 100%;
+}
+
+// Positioning variables
+$static-blob-size: 30%;
+$active-blob-size: 35%;
+$dist: 10%;
+$dist-active: $static-blob-size / $active-blob-size * $dist;
+
+.blob-static {
+	width: $static-blob-size;
+	height: $static-blob-size;
+}
+
+.blob-active {
+	width: $active-blob-size;
+	height: $active-blob-size;
+	@include animation(blob-move, cubic-bezier(.9,.03,.33,1), 6s, infinite);
+}
+
+@keyframes blob-move {
+	0%, 100% {
+		top: $dist-active;
+		left: $dist-active;
+	}
+	25% {
+		top: $dist-active;
+		left: 100% - $dist-active - $active-blob-size;
+	}
+	50% {
+		top: 100% - $dist-active - $active-blob-size;
+		left: 100% - $dist-active - $active-blob-size;
+	}
+	75% {
+		top: 100% - $dist-active - $active-blob-size;
+		left: $dist-active;
+	}
+}
+
+// Static blob placing
+.blob-static:first-child {
+	top: $dist;
+	left: $dist;
+}
+
+.blob-static:nth-child(2) {
+	top: $dist;
+	left: 100% - $dist - $static-blob-size;
+}
+
+.blob:nth-child(3) {
+	top: 100% - $dist - $static-blob-size;
+	left: 100% - $dist - $static-blob-size;
+}
+
+.blob:nth-child(4) {
+	top: 100% - $dist - $static-blob-size;
+	left: $dist;
+}
